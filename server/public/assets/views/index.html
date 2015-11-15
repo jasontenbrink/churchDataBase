@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>personal_project</title>
+  <link rel="stylesheet" href="/vendors/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/styles/style.css">
+  <script src="vendors/angular.min.js"></script>
+  <script src="vendors/angular-animate.min.js"></script>
+  <script src="vendors/angular-route.min.js"></script>
+  <script src="assets/scripts/client.js"></script>
+  <script src="assets/scripts/controllers/directoryController.js"></script>
+  <script src="assets/scripts/controllers/homeController.js"></script>
+  <script src="assets/scripts/directives/searchResult.js"></script>
+</head>
+<body>
+  <input type="text" ng-model="fish" name="name" value="">
+  {{fish}}
+  <header>this is a header</header>
+  <nav ng-include="'assets/views/templates/navigation.html'">This is the nav</nav>
+  <main ng-view></main>
+  <footer></footer>
+
+</body>
+</html>

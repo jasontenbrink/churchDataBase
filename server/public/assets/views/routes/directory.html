@@ -1,0 +1,11 @@
+<div ng-controller="DirectoryController">
+  <p>Dirctory Page!</p>
+  <input type="text" ng-model="searchString">
+  {{searchString}}
+  <div ng-click="getQuery()" class="btn">Submit</div>
+  <div ng-repeat="person in searchResults">
+    <p>{{person.last_name}}</p>
+    <search-result result="person"></search-result>
+  </div>
+
+</div>
