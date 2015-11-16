@@ -9,13 +9,13 @@
   <script src="vendors/angular-animate.min.js"></script>
   <script src="vendors/angular-route.min.js"></script>
   <script src="assets/scripts/client.js"></script>
+  <script src="assets/scripts/factories/factory.data.js"></script>
   <script src="assets/scripts/controllers/directoryController.js"></script>
   <script src="assets/scripts/controllers/homeController.js"></script>
   <script src="assets/scripts/directives/searchResult.js"></script>
 </head>
 <body>
-  <input type="text" ng-model="fish" name="name" value="">
-  {{fish}}
+
   <header>this is a header</header>
   <nav ng-include="'assets/views/templates/navigation.html'">This is the nav</nav>
   <main ng-view></main>

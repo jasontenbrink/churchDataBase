@@ -4,6 +4,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index.js');
 var data = require('./routes/data.js');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({expanded: true}));
+
 app.use('/data', data);
 app.use('/',index);
 app.set('port', process.env.PORT || 8000);

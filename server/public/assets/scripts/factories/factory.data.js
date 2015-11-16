@@ -1,8 +1,8 @@
-app.factory('DataService', ['$http', function () {
+app.factory('DataService', ['$http', function ($http) {
   var data;
   var getData = function (queryParams) {
-    $http.get('/data'
-      //{params: {last_name: queryParams.last_name}}
+    $http.get('/data',
+      {params: {last_name: queryParams}}
     )
     .then(
       function (response) {
