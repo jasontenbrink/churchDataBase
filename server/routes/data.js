@@ -7,7 +7,7 @@ var router = express.Router();
 var connectionString = process.env.DATABASE_URL   || 'postgres://localhost:5432/church';
 
 router.route('/').get(function (req, res) {
-  console.log('req query', req.query.last_name);
+  console.log('query parameters from client:', req.query);
   var results = [];
   pg.connect(connectionString,function (err, client, done) {
     var query = client.query('SELECT * FROM people WHERE last_name = $1', [req.query.last_name]);

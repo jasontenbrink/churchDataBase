@@ -1,6 +1,9 @@
 <div >
   <p>Dirctory Page!</p>
-  <input type="text" ng-model="searchString">
+  <input type="text" ng-model="searchObject.first_name">
+  <input type="text" ng-model="searchObject.last_name">
+  <input type="text" ng-model="searchObject.phone_number">
+  <input type="text" ng-model="searchObject.email">
 
   <div ng-click="getQuery()" class="btn">Submit</div>
   <div ng-repeat="person in searchResults">
