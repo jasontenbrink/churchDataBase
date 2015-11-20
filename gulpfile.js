@@ -9,16 +9,21 @@ gulp.task('mergeAndUglify', function() {
       .pipe(uglify())
       .pipe(gulp.dest('./server/public/assets/scripts/'));
 
-      gulp.src('./client/scripts/factories/*.js')
-        .pipe(concat('factories.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./server/public/assets/scripts/'));
+      // gulp.src('./client/scripts/factories/*.js')
+      //   .pipe(concat('factories.min.js'))
+      //   .pipe(uglify())
+      //   .pipe(gulp.dest('./server/public/assets/scripts/'));
+
+        gulp.src('./client/scripts/factories/*.js')
+          .pipe(concat('factories.min.js'))
+          .pipe(uglify())
+          .pipe(gulp.dest('./server/public/assets/scripts/'));
 
       gulp.src('./client/scripts/directives/*.js')
         .pipe(concat('directives.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./server/public/assets/scripts/'));
-        
+
       gulp.src('./client/scripts/controllers/*.js')
         .pipe(concat('controllers.min.js'))
         .pipe(uglify())
@@ -56,5 +61,5 @@ gulp.task('copy', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('./client/**/*/*', ['copy', 'mergeAndUglify']);
+  gulp.watch('./client/**/**/*.*', ['copy', 'mergeAndUglify']);
 });
