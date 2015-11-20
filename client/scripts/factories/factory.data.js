@@ -1,4 +1,5 @@
 app.factory('DataService', ['$http', function ($http) {
+  var x = 'gulp test';
   var data;
   var getData = function (queryParams) {
     console.log('heading out from factory', queryParams);
