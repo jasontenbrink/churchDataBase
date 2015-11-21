@@ -9,8 +9,15 @@ var connectionString = process.env.DATABASE_URL   || 'postgres://localhost:5432/
 router.route('/').get(function (req, res) {
   console.log('query parameters from client:', req.query);
   var results = [];
+  var firstNameParam = req.query.first_name + '%';
+  var lastNameParam = req.query.last_name + '%';
+  var emailParam = req.query.email + '%';
+  console.log('query params', firstNameParam, lastNameParam, emailParam);
   pg.connect(connectionString,function (err, client, done) {
-    var query = client.query('SELECT * FROM people WHERE last_name = $1', [req.query.last_name]);
+    var query = client.query('SELECT * FROM people WHERE' +
+                              ' first_name ILIKE $1 AND last_name ILIKE $2' +
+                              ' AND email ILIKE $3',
+     [firstNameParam, lastNameParam, emailParam]);
     query.on('row', function (row) {
       results.push(row);
     });

@@ -1,17 +1,19 @@
 <div >
   <p>Dirctory Page!</p>
+  <label for="=first_name">First Name</label>
   <input type="text" ng-model="searchObject.first_name">
+
+  <label for="last_name">Last Name</label>
   <input type="text" ng-model="searchObject.last_name">
-  <input type="text" ng-model="searchObject.phone_number">
+
+  <label for="email">Email</label>
   <input type="text" ng-model="searchObject.email">
 
   <div ng-click="getQuery()" class="btn">Submit</div>
-  <div ng-repeat="person in searchResults">
+  <!-- <div ng-repeat="person in searchResults">
 
     <search-result result="person"></search-result>
-  </div>
+  </div> -->
 
+<div class="member-results" ui-grid="gridOptions"></div>
 </div>
-
-
-<!-- ng-controller="DirectoryController" -->

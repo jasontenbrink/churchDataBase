@@ -1,5 +1,6 @@
 app.factory('DataService', ['$http', function ($http) {
-  var x = 'gulp testerer';
+  var y = 'gulp testerereer';
+  var w = 2;
   var data;
   var getData = function (queryParams) {
     console.log('heading out from factory', queryParams);
@@ -8,6 +9,7 @@ app.factory('DataService', ['$http', function ($http) {
     )
     .then(
       function (response) {
+        console.log('response from server', response.data);
         data = response.data;
       }
     );

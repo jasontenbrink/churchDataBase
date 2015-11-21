@@ -1,5 +1,5 @@
-var app = angular.module('app',['ngAnimate','ngRoute']);
-var x = 2;
+var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid']);
+var x = 3;
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/directory', {
                   templateUrl: 'assets/views/routes/directory.html',
