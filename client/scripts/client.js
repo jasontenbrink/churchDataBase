@@ -1,5 +1,4 @@
 var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid']);
-var x = 3;
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/directory', {
                   templateUrl: 'assets/views/routes/directory.html',
@@ -8,6 +7,10 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/home', {
                   templateUrl: 'assets/views/routes/home.html',
                   controller: 'HomeController'
+                })
+                .when('/individualDatacard', {
+                  templateUrl:'assets/views/routes/individual-datacard.html',
+                  controller: 'IndividualDatacardController'
                 });
 }]);
 
