@@ -1,16 +1,16 @@
-app.controller('DirectoryController',['$scope', 'DataService', 'uiGridConstants',
-function ($scope, DataService, uiGridConstants) {
+app.controller('DirectoryController',['$scope', 'DataService', 'uiGridConstants','$timeout',
+function ($scope, DataService, uiGridConstants, $timeout) {
 
   $scope.searchObject = new SearchObject();
   $scope.searchResults = [];
-  $scope.dataService = DataService;
+  var dataService = DataService;
 
   $scope.sendSelectedMemberInfo = function(gridId) {
     console.log('this is the grid id', gridId);
     for (var i = 0; i < $scope.searchResults.length; i++) {
       console.log('this is the searchResults hashkey', $scope.searchResults[i].$$hashKey);
       if ($scope.searchResults[i].$$hashKey === gridId){
-          $scope.dataService.assignActiveMemberId($scope.searchResults[i].$$hashKey);
+          dataService.assignActiveMemberId($scope.searchResults[i].$$hashKey);
           break;
       }
     }
@@ -37,7 +37,7 @@ function ($scope, DataService, uiGridConstants) {
 
   };
   $scope.gridOptions = {
-    //data: $scope.searchResults
+    //data: $scope.searchResults,
     columnDefs: [
            { field: 'first_name',
              cellTemplate: '<a ng-click="grid.appScope.sendSelectedMemberInfo(row.entity.$$hashKey)" href="#/individualDatacard">{{COL_FIELD}}</a>',
@@ -50,26 +50,32 @@ function ($scope, DataService, uiGridConstants) {
            { field: 'email'},
            { field: 'phone'},
            {field: '$$hashKey', visible: false}
-
-
          ]
   };
 
-
   $scope.getQuery = function () {
         console.log('heading out from controller', $scope.searchObject);
-      //  if ($scope.dataService.peopleData() === undefined){
-          $scope.dataService.retrieveData($scope.searchObject)
+      //  if (dataService.peopleData() === undefined){
+          dataService.retrieveData($scope.searchObject)
           .then(function () {
-            $scope.searchResults = $scope.dataService.peopleData();
+            $scope.searchResults = dataService.peopleData();
             $scope.gridOptions.data = $scope.searchResults;
           });
       //  }
         // else{
-        //   $scope.searchResults = $scope.dataService.peopleData();
+        //   $scope.searchResults = dataService.peopleData();
         // }
-
     };
+    // $scope.clickOnUpload = (function () {
+    //   //$timeout(function() {
+    //     angular.element('#submitButton').trigger('click');
+    // //  }, 100);
+    // })();
+    // $('#submitButton').trigger('click');
+    //angular.element('button').text('hi');
+      $timeout(function () {
+         angular.element(document).find('nav').triggerHandler('click');
+      }, 0);
 }]);
 
 function SearchObject() {

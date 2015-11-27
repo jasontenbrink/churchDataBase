@@ -11,6 +11,10 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/individualDatacard', {
                   templateUrl:'assets/views/routes/individual-datacard.html',
                   controller: 'IndividualDatacardController'
+                })
+                .when('/family', {
+                  templateUrl:'assets/views/routes/family.html',
+                  controller: 'FamilyDatacardController'
                 });
 }]);
 

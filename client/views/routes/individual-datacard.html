@@ -1,6 +1,22 @@
 <p>
   individual Datacard page!  Woot!
-  {{x}}
-  {{y}}
-  {{member.first_name}}
+
+<div class="well">
+    <div ng-repeat="(key,value) in member">
+      {{value}}
+    </div>
+</div>
+
+  <div ng-repeat="family in families" >
+    <div class="well">
+      <a href="#/family" >{{family.family_name}}</a>
+    </div>
+  </div>
+
+  <div ng-repeat="address in addresses" class="well">
+    <div ng-repeat="(key,value) in address">
+      {{value}}
+    </div>
+  </div>
+
 </p>
