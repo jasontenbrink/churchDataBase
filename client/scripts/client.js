@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid']);
+var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid', 'ui.grid.selection']);
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/directory', {
                   templateUrl: 'assets/views/routes/directory.html',
@@ -15,6 +15,14 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/family', {
                   templateUrl:'assets/views/routes/family.html',
                   controller: 'FamilyDatacardController'
+                })
+                .when('/make-families', {
+                  templateUrl:'assets/views/routes/make-families.html',
+                  controller: 'MakeFamiliesController'
+                })
+                .when('/edit-family', {
+                  templateUrl:'assets/views/routes/edit-family.html',
+                  controller: 'EditFamilyController'
                 });
 }]);
 

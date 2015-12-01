@@ -1,4 +1,3 @@
-var x = 'gulp test';
 app.directive('searchResult',
   function () {
     return {

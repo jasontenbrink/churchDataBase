@@ -12,5 +12,7 @@
   <nav ng-click="getQuery()" class="btn" id="submitButton">Submit</nav>
   <button ng-click="getQuery()" class="btn" id="submitButton">Submit</button>
 
-<div class="member-results" ui-grid="gridOptions"></div>
+  <div class="member-results" ui-grid="gridOptions" ui-grid-selection></div>
+
+  <div ng-repeat="person in family"> {{person}}  </div>
 </div>

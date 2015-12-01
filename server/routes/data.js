@@ -2,6 +2,8 @@ var express = require('express');
 var when = require('when');
 var pg = require('pg');
 var pgQuery = require('pg-query');
+
+
 pgQuery.connectionParameters = process.env.DATABASE_URL   || 'postgres://localhost:5432/church';
 
 var router = express.Router();
@@ -11,7 +13,7 @@ var connectionString = process.env.DATABASE_URL   || 'postgres://localhost:5432/
 
 router.route('/individual').get(function (req, res) {
   //make 3 calls to DB.  1 for singular data on peoples table, 1 for fam, 1 for address, 1 for phone #
-  console.log('query parameters from client:', req.query);
+  console.log('/individual query parameters from client, req.query.pin:', req.query.pin);
   var responseObject = {};
   var pin = req.query.pin;
   when.all([
@@ -32,7 +34,7 @@ router.route('/individual').get(function (req, res) {
         responseObject.families = families[0];
         responseObject.addresses = addresses[0];
 
-        console.log('/individual response object. We want this to be last: ', responseObject);
+        console.log('/individual responseObject.pin heading back to client: ', responseObject.individual.pin);
         res.json(responseObject);
     });
 //  res.json(result);
@@ -42,16 +44,15 @@ router.route('/individual').get(function (req, res) {
 
 
 router.route('/').get(function (req, res) {
-  console.log('query parameters from client:', req.query);
   var results = [];
   var firstNameParam = req.query.first_name + '%';
   var lastNameParam = req.query.last_name + '%';
   var emailParam = req.query.email + '%';
-  console.log('query params', firstNameParam, lastNameParam, emailParam);
+  console.log('/data query params', firstNameParam, lastNameParam, emailParam);
   pg.connect(connectionString,function (err, client, done) {
-    var query = client.query('select first_name, last_name, email, p.pin, pf.family_id' +
-      ' from people p join people_and_families pf' +
-      ' on (p.pin = pf.pin) where first_name' +
+    var query = client.query('select first_name, last_name, email, pin ' +
+      ' from people ' +
+      ' where first_name' +
       ' ILIKE $1 AND last_name ILIKE $2 AND email ILIKE $3',
       [firstNameParam, lastNameParam, emailParam]);
     query.on('row', function (row) {

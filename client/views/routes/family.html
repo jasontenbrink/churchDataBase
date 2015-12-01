@@ -1,3 +1,15 @@
 <p>
-  hi from family page page page
+  hi from family page page page, family info should be here
 </p>
+
+<div class="">
+  {{family.family_name}}
+</div>
+
+<a href="#/edit-family">edit</a>
+
+<div ng-repeat="person in people" class="well">
+  <a href="#/individualDatacard" ng-click="updateActiveMemberId(person.pin)">
+    <div ng-repeat="(key,value) in person">{{value}}</div>
+  </a>
+</div>

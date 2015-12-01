@@ -9,7 +9,7 @@
 
   <div ng-repeat="family in families" >
     <div class="well">
-      <a href="#/family" >{{family.family_name}}</a>
+      <a href="#/family" ng-click="updateActiveFamilyId(family.family_id)">{{family.family_name}}</a>
     </div>
   </div>
 

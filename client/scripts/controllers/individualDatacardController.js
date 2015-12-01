@@ -12,6 +12,8 @@ function ($scope, DataService) {
       console.log('from inside indvcontr',data);
     });
 
-
+    $scope.updateActiveFamilyId = function (id) {
+      dataService.assignActiveFamilyIdApi(id);
+    };
 
 }]);
