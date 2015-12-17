@@ -2,8 +2,8 @@ app.factory('DataService', ['$http', function ($http) {
   var data;
   var individualData;
   var familyData;
-  var activeMemberId = -1;
-  var activeFamilyId = -1;
+  var activeMemberId = 2;
+  var activeFamilyId = 3;
 
   var publicApi = {
     retrieveData: function (queryParams) {
@@ -55,10 +55,12 @@ app.factory('DataService', ['$http', function ($http) {
 
 //getter for individual data card
   var getIndividualData = function (id) {
-    var member = getMember(id);
-    console.log('heading out from factory on /data/individual: ', member);
+  //  var member = getMember(id);
+    var pinObject = {pin: id};
+
+    console.log('heading out from factory on /data/individual: ', id);
     var promise = $http.get('/data/individual',
-      {params: member}
+      {params: pinObject}
     )
     .then(
       function (response) {

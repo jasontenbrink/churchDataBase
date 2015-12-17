@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid', 'ui.grid.selection']);
+var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid', 'ui.grid.selection','ngMaterial', 'ui.grid.exporter']);
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/directory', {
                   templateUrl: 'assets/views/routes/directory.html',

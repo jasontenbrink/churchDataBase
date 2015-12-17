@@ -11,12 +11,13 @@ function ($scope, DataService, uiGridConstants, $timeout, $http) {
   var family = [];
 
   //get active family data
-  if (dataService.familyData === undefined){
+  if (dataService.familyData() === undefined){
     dataService.retrieveFamilyData().then(function (response) {
       $scope.family = dataService.familyData().family;
       $scope.people = dataService.familyData().people;
     });
   } else{
+    console.log('dataService.familyData', dataService.familyData());
       $scope.family = dataService.familyData().family;
       $scope.people = dataService.familyData().people;
       console.log('resulting people in family from db, ', $scope.people);
@@ -50,6 +51,9 @@ function ($scope, DataService, uiGridConstants, $timeout, $http) {
           ],
      enableFullRowSelection: true
    };
+
+
+
    $scope.gridOptions.onRegisterApi = function(gridApi){
    //set gridApi on scope
    $scope.gridApi = gridApi;

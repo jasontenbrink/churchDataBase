@@ -25,3 +25,42 @@
   width: 100%;
   height: 300px;
 }
+
+.cssSlideUp {
+    transition: .2s linear all;
+    height: 80px;
+    overflow: hidden;
+}
+.cssSlideUp.ng-hide {
+    height:0;
+}
+
+.individual-datacard{
+  background-color: gray;
+}
+
+.toggle-search-button {
+   min-height: 0;
+   min-width: 0;
+   line-height: 0;
+   height: 15px;
+   padding: 0px;
+   font-size: 11pt;
+   width: 100%;
+   color: grey;
+   /*position: fixed;*/
+}
+
+.profile-sidebar{
+  /*border-right: 1px solid black;*/
+  background-color: white;
+  /*position: fixed;
+  left: 0px;
+  margin-bottom: -5000px; /* any large number will do */
+  /*padding-bottom: 5000px;*/
+}
+
+.individual-content{
+  background-color: white;
+
+}

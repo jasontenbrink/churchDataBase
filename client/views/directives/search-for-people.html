@@ -1,0 +1,22 @@
+<!-- <div layout="row" layout-align="center center"  class="cssSlideUp"> -->
+  <md-button class="toggle-search-button" ng-mouseenter="onOrOff=true" ng-click="initialShow=true"
+  layout-align="center center" fade>search</md-button>
+<!-- </div> -->
+
+<md-whiteframe class="md-whiteframe-4dp cssSlideUp" layout="row" ng-show="onOrOff || initialShow"
+  layout-align="space-around" layout-margin ng-mouseleave="onOrOff=false">
+  <md-input-container>
+    <label>First Name</label>
+    <input ng-model="searchObject.first_name">
+  </md-input-container>
+  <md-input-container>
+    <label>Last Name</label>
+    <input ng-model="searchObject.last_name">
+  </md-input-container>
+  <md-input-container>
+    <label>Email</label>
+    <input ng-model="searchObject.email">
+  </md-input-container>
+  <md-button ng-click="fetchData(searchObject)" ng-click>Submit</md-button>
+
+</md-whiteframe>

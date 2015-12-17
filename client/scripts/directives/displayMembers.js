@@ -6,7 +6,7 @@ app.directive('displayMember',['uiGridConstants',
         gridOptions: '=',
         data: '='
       },
-      templateUrl: 'assets/views/templates/display-member.html'
+      templateUrl: 'assets/views/directives/display-members.html'
     };
   }
 ]);

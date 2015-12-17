@@ -1,9 +1,6 @@
 app.controller('DirectoryController',['$scope', 'DataService', 'uiGridConstants','$timeout',
 function ($scope, DataService, uiGridConstants, $timeout) {
 
-  $scope.searchObject = new SearchObject();
-  $scope.searchResults = [];
-  $scope.family = [];
   var dataService = DataService;
 
   $scope.sendSelectedMemberInfo = function(id) {
@@ -27,40 +24,19 @@ function ($scope, DataService, uiGridConstants, $timeout) {
            { field: 'phone'},
            {field: 'pin', visible: false}
          ],
-    enableFullRowSelection: true
+    enableFullRowSelection: true,
+    onRegisterApi: function(gridApi){
+      $scope.gridApi = gridApi;
+    }
   };
 
-  $scope.gridOptions.onRegisterApi = function(gridApi){
-  //set gridApi on scope
-  $scope.gridApi = gridApi;
-  gridApi.selection.on.rowSelectionChanged($scope,function(row){
-      var msg = 'row selected ' + row.isSelected;
-      console.log(row.entity);
-      console.log(msg);
-    });
+  $scope.export = function () {
+    console.log('csv export button was hit');
+    $scope.gridApi.exporter.csvExport( 'visible', 'visible');
   };
-  $scope.getQuery = function () {
-        console.log('heading out from controller', $scope.searchObject);
-      //  if (dataService.peopleData() === undefined){
-          dataService.retrieveData($scope.searchObject)
-          .then(function () {
-            $scope.searchResults = dataService.peopleData();
-            $scope.gridOptions.data = $scope.searchResults;
-          });
-      //  }
-        // else{
-        //   $scope.searchResults = dataService.peopleData();
-        // }
-    };
+
 
     $timeout(function () {
        angular.element(document).find('nav').triggerHandler('click');
     }, 0);
 }]);
-
-function SearchObject() {
-  this.first_name='';
-  this.last_name='';
-  this.email='';
-  this.phone='';
-}

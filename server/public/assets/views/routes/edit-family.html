@@ -1,43 +1,21 @@
-Edit Family page!!
-{{family}}
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-6">
-        <div >
-          <p>Make Families!</p>
-          <label for="=first_name">First Name</label>
-          <input type="text" ng-model="searchObject.first_name">
+<md-whiteframe flex="100" class="md-whiteframe-24dp individual-content"
+  layout-padding layout-margin layout="row" layout-align="space-around" >
 
-          <label for="last_name">Last Name</label>
-          <input type="text" ng-model="searchObject.last_name">
+  <div flex="50" class="add-people" style="border-right: 1px solid rgb(206, 203, 212); padding-right: 60px">
+    <search-for-people search-result="gridOptions.data"></search-for-people>
+    <div class="member-results" ui-grid="gridOptions" ui-grid-selection></div>
 
-          <label for="email">Email</label>
-          <input type="text" ng-model="searchObject.email">
-
-          <nav ng-click="getQuery()" class="btn" id="submitButton">Submit</nav>
-          <button ng-click="getQuery()" class="btn" id="submitButton">Submit</button>
-
-          <div class="member-results" ui-grid="gridOptions" ui-grid-selection></div>
-
-
-          <button type="button" name="makeFamily" ng-click="updateFamily()">Create Family</button>
-        </div>
-      </div>
-
-
-
-
-      <div class="col-md-6">
-        <div ng-repeat="person in people">
-          <p class="well" ng-click="removeFromFamily(person.pin)">{{person.first_name}} {{person.last_name}}</p>
-        </div>
-
-        <!-- <div ng-repeat="person in family">
-          <div class="well" ng-click="removeFromFamily(person.pin)">
-            {{person.first_name}}, {{person.last_name}}, {{person.email}}
-          </div> -->
-        </div>
-      </div>
   </div>
 
-</div>
+  <div layout="column" layout-align="space-around" flex-offset="5">
+    <div class="added-people" layout="row" >
+      <md-button class="md-raised md-secondary" ng-click="removeFromFamily(person.pin)" layout-padding layout="row"  ng-repeat="person in people"
+      flex-offset="15" >
+        <p>{{person.first_name}} {{person.last_name}}</p>
+        <!-- <p> &nbsp;{{person.last_name}}</p> -->
+      </md-button>
+    </div>
+
+    <md-button  flex="20" name="Update Family" ng-click="updateFamily()">Update Family</md-button>
+    </div>
+  </div>

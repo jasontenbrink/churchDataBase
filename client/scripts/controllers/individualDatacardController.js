@@ -1,6 +1,8 @@
 app.controller('IndividualDatacardController', ['$scope', 'DataService',
 function ($scope, DataService) {
   $scope.x = 'hi!';
+  $scope.columnWidth = 20;
+  $scope.columnSpacing = '3';
   var dataService = DataService;
   var data;
   dataService.retrieveActiveMember()
