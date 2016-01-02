@@ -3,32 +3,29 @@ var watch = require('gulp-watch');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 
-gulp.task('mergeAndUglify', function() {
+gulp.task('merge', function() {
     gulp.src('./client/scripts/*.js')
       .pipe(concat('app.min.js'))
-      .pipe(uglify())
       .pipe(gulp.dest('./server/public/assets/scripts/'));
 
-      // gulp.src('./client/scripts/factories/*.js')
-      //   .pipe(concat('factories.min.js'))
-      //   .pipe(uglify())
-      //   .pipe(gulp.dest('./server/public/assets/scripts/'));
+    gulp.src('./client/scripts/factories/*.js')
+      .pipe(concat('factories.min.js'))
+      .pipe(gulp.dest('./server/public/assets/scripts/'));
 
-        gulp.src('./client/scripts/factories/*.js')
-          .pipe(concat('factories.min.js'))
-          .pipe(uglify())
-          .pipe(gulp.dest('./server/public/assets/scripts/'));
+    gulp.src('./client/scripts/directives/*.js')
+      .pipe(concat('directives.min.js'))
+      .pipe(gulp.dest('./server/public/assets/scripts/'));
 
-      gulp.src('./client/scripts/directives/*.js')
-        .pipe(concat('directives.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./server/public/assets/scripts/'));
+    gulp.src('./client/scripts/controllers/*.js')
+      .pipe(concat('controllers.min.js'))
+      .pipe(gulp.dest('./server/public/assets/scripts/'));
+});
 
-      gulp.src('./client/scripts/controllers/*.js')
-        .pipe(concat('controllers.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./server/public/assets/scripts/'));
-
+//only used for deploying to a public domain
+gulp.task('uglify', function() {
+  gulp.src('./server/public/assets/scripts/**')
+    .pipe(uglify())
+    .pipe(gulp.dest('./server/public/assets/scripts/'));
 });
 
 gulp.task('copy', function () {
@@ -58,13 +55,16 @@ gulp.task('copy', function () {
   gulp.src('./client/styles/*.css')
   .pipe(gulp.dest('./server/public/assets/styles/'));
 
-  gulp.src('./client/views/**/*.html')
+  gulp.src('./client/views/**/*.*')
   .pipe(gulp.dest('./server/public/assets/views/'));
 
   // gulp.src('./client/views/')
   // .pipe(gulp.dest('./server/public/assets/views/'));
 });
 
+
 gulp.task('watch', function () {
-  gulp.watch('./client/**/**/*.*', ['copy', 'mergeAndUglify']);
+  gulp.watch('./client/**/**/*.*', ['copy', 'merge']);
 });
+
+gulp.task('default', ['merge', 'copy', 'watch']);
