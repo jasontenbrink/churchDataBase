@@ -23,6 +23,10 @@ app.config(['$routeProvider', function($routeProvider){
                 .when('/edit-family', {
                   templateUrl:'assets/views/routes/edit-family.html',
                   controller: 'EditFamilyController'
+                })
+                .when('/login', {
+                  templateUrl:'assets/views/routes/login.html',
+                  controller: 'LoginController'
                 });
 }]);
 
