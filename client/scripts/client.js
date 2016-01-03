@@ -1,5 +1,7 @@
 var app = angular.module('app',['ngAnimate','ngRoute', 'ui.grid', 'ui.grid.selection','ngMaterial', 'ui.grid.exporter']);
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
+  $httpProvider.interceptors.push('AuthenticationRedirectInjector');
+
   $routeProvider.when('/directory', {
                   templateUrl: 'assets/views/routes/directory.html',
                   controller: "DirectoryController"
@@ -25,6 +27,15 @@ app.config(['$routeProvider', function($routeProvider){
                   controller: 'EditFamilyController'
                 })
                 .when('/login', {
+                  templateUrl:'assets/views/routes/login.html',
+                  controller: 'LoginController'
+                })
+                .when('/register', {
+                  templateUrl:'assets/views/routes/register.html',
+                  controller: 'RegisterController'
+                }).
+                otherwise({
+                  redirectTo: '/login',
                   templateUrl:'assets/views/routes/login.html',
                   controller: 'LoginController'
                 });
